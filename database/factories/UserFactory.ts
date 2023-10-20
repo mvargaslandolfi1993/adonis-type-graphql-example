@@ -7,7 +7,7 @@ export default Factory.define(User, ({ faker }) => {
     name: faker.person.firstName(),
     last_name: faker.person.lastName(),
     phone: faker.phone.number(),
-    email: faker.internet.email()
+    email: faker.internet.email(),
   }
 })
   .relation('comments', () => CommentFactory)

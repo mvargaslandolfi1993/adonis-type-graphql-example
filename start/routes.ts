@@ -19,7 +19,19 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import GraphQL from '@ioc:Adonis/Addons/GraphqlManager'
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return { app: 'Adonis Graphql Example' }
 })
+
+Route.post('/graphql', (ctx) => {
+  return GraphQL.handle(ctx)
+})
+
+Route.get('/graphql', async ({ request, view }) => {
+  view.share({ baseUrl: request.completeUrl() })
+  return view.render('graphql_view')
+})
+
+Route.post('/graphql-controller', 'GraphqlsController.index');

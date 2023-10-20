@@ -5,7 +5,7 @@ import Comment from './Comment'
 
 export default class User extends BaseModel {
   public static selfAssignPrimaryKey = true
-  
+
   @beforeCreate()
   public static async assignUuid(user: User) {
     user.id = uuid()

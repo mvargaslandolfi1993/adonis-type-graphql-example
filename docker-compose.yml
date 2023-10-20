@@ -26,7 +26,7 @@ services:
       - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
       - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
     ports:
-      - "3306:3306"
+      - '3306:3306'
     networks:
       - backend
 
@@ -47,9 +47,11 @@ services:
       - MYSQL_HOST=mysql
     volumes:
       - ./:/home/node/app
+    networks:
+      - backend
     command: dumb-init node ace serve --watch --node-args="--inspect=0.0.0.0"
 
 networks:
   backend:
-    name: "backend"
+    name: 'backend'
     driver: bridge

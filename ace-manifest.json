@@ -569,6 +569,23 @@
           "description": "Disable locks acquired to run migrations safely"
         }
       ]
+    },
+    "graphql:model": {
+      "settings": {},
+      "commandPath": "adonis-type-graphql/build/commands/CreateGraphqlModel",
+      "commandName": "graphql:model",
+      "description": "Create a new GraphQL model",
+      "args": [
+        {
+          "type": "string",
+          "propertyName": "model",
+          "name": "model",
+          "required": true,
+          "description": "Name of the Adonis model"
+        }
+      ],
+      "aliases": [],
+      "flags": []
     }
   },
   "aliases": {}
