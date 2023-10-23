@@ -34,7 +34,7 @@ This is an example project that demonstrates how to use how to use the [adonis-t
 
     ```bash
     node ace migration:run
-
+    ```
 
 ### Usage
 
