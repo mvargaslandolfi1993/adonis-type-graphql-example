@@ -1,10 +1,11 @@
-import { Resolver, Query, Arg, ResolverInterface } from 'type-graphql'
+import { Resolver, Query, Arg } from 'type-graphql'
 import { CommentType } from './type'
 import Comment from 'App/Models/Comment'
+import { Service } from 'typedi'
 
+@Service()
 @Resolver((_of) => CommentType)
-//@ts-ignore
-export class CommentResolver implements ResolverInterface<CommentType> {
+export class CommentResolver {
   @Query((_returns) => CommentType, { nullable: true, description: 'Get comment by id' })
   async comment(@Arg('id') id: string): Promise<CommentType | null> {
     return await Comment.find(id)

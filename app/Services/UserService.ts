@@ -1,5 +1,7 @@
 import User from 'App/Models/User'
-import { Service } from "typedi";
+import { Service } from 'typedi'
+import { GraphQLError } from 'graphql'
+import CreateUserDto from 'App/DTOs/Users/CreateUserDto'
 
 @Service()
 export default class UserService {
@@ -7,7 +9,19 @@ export default class UserService {
     return await User.query().paginate(page, limit)
   }
 
-  public async find(id: string) {
-    return await User.find(id)
+  public async find(id: string): Promise<any> {
+    const user = await User.find(id)
+
+    if (!user) {
+      throw new GraphQLError('User not found')
+    }
+
+    return user
+  }
+
+  public async store(params: CreateUserDto): Promise<any> {
+    const user = await User.create(params)
+
+    return user
   }
 }

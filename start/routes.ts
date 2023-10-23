@@ -34,4 +34,4 @@ Route.get('/graphql', async ({ request, view }) => {
   return view.render('graphql_view')
 })
 
-Route.post('/graphql-controller', 'GraphqlsController.index');
+Route.post('/graphql-controller', 'GraphqlsController.index')

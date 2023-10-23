@@ -1,19 +1,19 @@
-import { type MiddlewareInterface, type NextFn, type ResolverData } from "type-graphql";
-import { Service } from "typedi";
+import { type MiddlewareInterface, type NextFn, type ResolverData } from 'type-graphql'
+import { Service } from 'typedi'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export interface Context {
-    ctx: HttpContextContract;
+  ctx: HttpContextContract
 }
 
 @Service()
 export class CustomMiddleware implements MiddlewareInterface<Context> {
-    /**
-     * You can access to Adonis Context
-     * @param param0 
-     * @param next 
-     * @returns 
-     */
+  /**
+   * You can access to Adonis Context
+   * @param param0
+   * @param next
+   * @returns
+   */
   async use(_context: ResolverData<Context>, next: NextFn) {
     /*
      * Do whever you want
@@ -21,6 +21,6 @@ export class CustomMiddleware implements MiddlewareInterface<Context> {
      * also you can destructure like
      * {context, info}: ResolverData<Context>
      */
-    return next();
+    return next()
   }
 }

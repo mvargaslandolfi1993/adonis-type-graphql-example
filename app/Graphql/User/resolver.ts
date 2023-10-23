@@ -1,13 +1,14 @@
-import { Resolver, Query, Arg, ResolverInterface, UseMiddleware } from 'type-graphql'
+import { Resolver, Query, Arg, UseMiddleware, Mutation } from 'type-graphql'
 import { UserType } from './type'
 import UserService from 'App/Services/UserService'
-import { Service } from "typedi";
-import { CustomMiddleware } from '../Middlewares/CustomMiddleware';
+import { Service } from 'typedi'
+import { CustomMiddleware } from '../Middlewares/CustomMiddleware'
+import { UserInput } from './input'
+import CreateUserDto from 'App/DTOs/Users/CreateUserDto'
 
 @Service()
 @Resolver((_of) => UserType)
-//@ts-ignore
-export class UserResolver implements ResolverInterface<UserType> {
+export class UserResolver {
   constructor(
     // Dependency injection
     private readonly userService: UserService
@@ -25,5 +26,12 @@ export class UserResolver implements ResolverInterface<UserType> {
     @Arg('limit', { defaultValue: 25, nullable: true }) limit: number
   ) {
     return await this.userService.get(page, limit)
+  }
+
+  @Mutation((_returns) => UserType)
+  async addUser(@Arg('user') userInput: UserInput): Promise<UserType> {
+    const dto = await CreateUserDto.create(userInput)
+
+    return await this.userService.store(dto)
   }
 }
