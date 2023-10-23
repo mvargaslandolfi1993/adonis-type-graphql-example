@@ -14,6 +14,7 @@ This is an example project that demonstrates how to use how to use the [adonis-t
 
    ```bash
    docker-compose up -d
+    ```
 
    This docker-compose up -d command will create the proxy with Nginx, the MySQL database, and also set up the corresponding database for you.
 
@@ -21,6 +22,7 @@ This is an example project that demonstrates how to use how to use the [adonis-t
 
     ```bash
     node ace migration:run
+    ```
 
 ## Setup Without Docker
 
